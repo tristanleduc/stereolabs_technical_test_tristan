@@ -14,7 +14,7 @@ The src directory contains the code for the project.
 - training.py is the script used to train the model
 - test.ipynb is a notebook to visualize test results, and to export the trained model to onnx format
 
-There are three inference scripts in the src directory:
+There are two inference scripts in the src directory:
 - The folder Inference_skyseg_onnx_runtime_cpp contains the code to run the model using onnxruntime and C++
 - A python version of the inference script as used as prototype and is named inference.py
 
@@ -80,22 +80,20 @@ The model used for this project is a pretrained DeepLabV3 model with a ResNet-10
 
 The Cityscapes dataset, initially used for semantic segmentation of urban scenes, was found to be insufficient for our needs. Initial tests showed poor performance in detecting the sky in webcam images. The uniformity in sky colors in Cityscapes likely led to poor generalization to skies with varying shades and cloud patterns.
 
-Here are some few examples of images from the Cityscapes dataset, showing the limited diversity in sky patterns:
+Here are a few examples of images from the Cityscapes dataset, showcasing the limited diversity in sky patterns:
 
-![Screenshot](images/cityscapes1.png)
-![Screenshot](images/cityscapes2.png)
-![Screenshot](images/cityscapes3.png)
+<img src="images/cityscapes1.png" width="200"> <img src="images/cityscapes2.png" width="200"> <img src="images/cityscapes3.png" width="200">
 
 #### ADE20K
 
 To address this limitation, we adopted the ADE20K dataset, which contains a diverse range of scenes, including both indoor and outdoor images. By filtering for images containing skies, we created a varied dataset that improved the model’s performance on webcam images. The extraction of sky-containing images was done using the annotations available in the dataset’s index file.
 
-Here are some examples of images from the ADE20K dataset, showcasing the diversity in sky patterns, featuring the rgb images and their corresponding segmentation masks:
+Here are some examples of images from the ADE20K dataset, showcasing the diversity in sky patterns, featuring the RGB images and their corresponding segmentation masks:
 
-![Screenshot](images/ade20k1-im.jpg)
-![Screenshot](images/ad20k1-mask.png)
-![Screenshot](images/ade20k2-im.jpg)
-![Screenshot](images/ade20k2-mask.png)
+| Image | Mask |
+|-------|------|
+| ![Screenshot](images/ade20k1-im.jpg) | ![Screenshot](images/ad20k1-mask.png) |
+| ![Screenshot](images/ade20k2-im.jpg) | ![Screenshot](images/ade20k2-mask.png) |
 
 Using the rich annotations provided in ADE20K, I filtered the images to include only those containing skies. This was done by identifying images labeled with the ‘sky’ category in the dataset’s annotations. For each selected image, I created a binary mask where the sky pixels were marked as 1 (or 255 in uint8) and all other pixels were set to 0. This involved using the segmentation annotations to accurately generate these masks. To ensure consistency, I resized both images and masks to a standard size, such as 256x256, and normalized the images using the dataset’s mean and standard deviation. These preprocessing steps were integrated into a custom Dataset class compatible with a DataLoader, enabling efficient batching and loading during model training. This approach allowed me to create a diverse and effective training dataset, enhancing the model’s ability to generalize across various sky conditions and improving its segmentation performance in real-world scenarios.
 
