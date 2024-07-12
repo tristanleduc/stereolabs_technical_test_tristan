@@ -97,6 +97,8 @@ Here are some examples of images from the ADE20K dataset, showcasing the diversi
 ![Screenshot](images/ade20k2-im.jpg)
 ![Screenshot](images/ade20k2-mask.png)
 
+Using the rich annotations provided in ADE20K, I filtered the images to include only those containing skies. This was done by identifying images labeled with the ‘sky’ category in the dataset’s annotations. For each selected image, I created a binary mask where the sky pixels were marked as 1 (or 255 in uint8) and all other pixels were set to 0. This involved using the segmentation annotations to accurately generate these masks. To ensure consistency, I resized both images and masks to a standard size, such as 256x256, and normalized the images using the dataset’s mean and standard deviation. These preprocessing steps were integrated into a custom Dataset class compatible with a DataLoader, enabling efficient batching and loading during model training. This approach allowed me to create a diverse and effective training dataset, enhancing the model’s ability to generalize across various sky conditions and improving its segmentation performance in real-world scenarios.
+
 ## Training process
 The model was trained for 25 epochs on the 3000 randomly sampled images from the ADE20K dataset. It is able to segment the sky and the rest of the image with relatively good accuracy. The model could however be further improved in the future by training on more data and for more epochs, which would likely improve the accuracy of the segmentation.
 
@@ -107,6 +109,7 @@ Tensorboard was used to visualize the training process. Here is a screenshot of 
 A learning rate of 8e-4 was used for training, and the model was trained using the Adam optimizer. The loss decreased steadily over the epochs, indicating that the model was learning effectively. I used a adaptive learning rate scheduler to adjust the learning rate during training.
 The model was trained on a Macbook pro with an arm architecture, M1 pro SoC with 16GB of RAM and 10 cores of CPU. The training took approximately 5 hours to complete. 
 
+Multiple tests were made to assess each intermediary checkpoint of the model. The model that performed the best was the one saved after 25 epochs of training. This model was then used for the inference on the webcam stream.
 
 ## Results
 
