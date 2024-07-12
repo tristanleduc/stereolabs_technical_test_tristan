@@ -98,6 +98,7 @@ Here are some examples of images from the ADE20K dataset, showcasing the diversi
 |-------|------|
 | ![Screenshot](images/ade20k1-im.jpg) | ![Screenshot](images/ad20k1-mask.png) |
 | ![Screenshot](images/ade20k2-im.jpg) | ![Screenshot](images/ade20k2-mask.png) |
+| ![Screenshot](images/ADE_train_00015785.jpg) | ![Screenshot](images/ADE_train_00015785_seg.png) |
 
 Using the rich annotations provided in ADE20K, I filtered the images to include only those containing skies. This was done by identifying images labeled with the ‘sky’ category in the dataset’s annotations. For each selected image, I created a binary mask where the sky pixels were marked as 1 (or 255 in uint8) and all other pixels were set to 0. This involved using the segmentation annotations to accurately generate these masks. To ensure consistency, I resized both images and masks to a standard size, such as 256x256, and normalized the images using the dataset’s mean and standard deviation. These preprocessing steps were integrated into a custom Dataset class compatible with a DataLoader, enabling efficient batching and loading during model training. This approach allowed me to create a diverse and effective training dataset, enhancing the model’s ability to generalize across various sky conditions and improving its segmentation performance in real-world scenarios.
 
