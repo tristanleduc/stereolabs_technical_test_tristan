@@ -83,9 +83,9 @@ The Cityscapes dataset, initially used for semantic segmentation of urban scenes
 Here are a few examples of images from the Cityscapes dataset, showcasing the limited diversity in sky patterns:
 
 <p align="center">
-  <img src="images/cityscapes1.png" width="200">
-  <img src="images/cityscapes2.png" width="200">
-  <img src="images/cityscapes3.png" width="200">
+  <img src="images/cityscapes1.png" width="280">
+  <img src="images/cityscapes2.png" width="280">
+  <img src="images/cityscapes3.png" width="280">
 </p>
 
 #### ADE20K
