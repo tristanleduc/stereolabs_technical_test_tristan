@@ -111,6 +111,13 @@ The model was trained on a Macbook pro with an arm architecture, M1 pro SoC with
 
 Multiple tests were made to assess each intermediary checkpoint of the model. The model that performed the best was the one saved after 25 epochs of training. This model was then used for the inference on the webcam stream.
 
+I first tested the model on individual frames captured with my webcam in scenes where the sky is visible. 
+
+Here are some examples of the model's output on still images from the webcam:
+
+![Screenshot](images/still%20frames%20test.png)
+![Screenshot](images/still%20frames%20test%202.png)
+
 ## Results
 
 The model was able to segment the sky from the rest of the image with good accuracy when tested on a live webcam stream. The model was able to generalize well to different sky conditions, making it suitable for real-world applications, despite struggling with some complex sky patterns. 
